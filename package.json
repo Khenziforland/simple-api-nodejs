@@ -1,0 +1,51 @@
+{
+  "name": "simpleApi",
+  "description": "Simple API",
+  "version": "1.0.0",
+  "main": "src/server.ts",
+  "author": {
+    "name": "Reyhan Savero",
+    "email": "reyhansavero@gmail.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.ts",
+    "dev": "nodemon src/server.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migrate:fresh": "npm run typeorm schema:drop -- -d ./src/data_source.ts && npm run typeorm migration:run -- -d ./src/data_source.ts",
+    "drop": "npm run typeorm schema:drop -- -d ./src/data_source.ts",
+    "revert": "npm run typeorm migration:revert -- -d ./src/data_source.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.598.0",
+    "bcrypt": "^5.1.1",
+    "chalk": "^4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-formidable": "^1.2.0",
+    "express-route-grouping": "^1.1.2",
+    "hashids": "^2.3.0",
+    "joi": "^17.13.1",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "luxon": "^3.4.4",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.3",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/express-formidable": "^1.2.3",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/lodash": "^4.17.5",
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^20.14.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

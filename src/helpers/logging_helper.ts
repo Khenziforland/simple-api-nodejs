@@ -1,0 +1,32 @@
+import chalk from "chalk";
+
+class Logging {
+  /**
+   ** Logs information.
+   *
+   * @param args
+   */
+  public static info = (args: any) => {
+    console.log(chalk.blue(`[${new Date().toLocaleString()}] [INFO]: `), typeof args === "string" ? chalk.blueBright(args) : args);
+  };
+
+  /**
+   ** Logs warning.
+   *
+   * @param args
+   */
+  public static warning = (args: any) => {
+    console.log(chalk.yellow(`[${new Date().toLocaleString()}] [WARNING]: `), typeof args === "string" ? chalk.yellowBright(args) : args);
+  };
+
+  /**
+   ** Logs error.
+   *
+   * @param args
+   */
+  public static error = (args: any) => {
+    console.log(chalk.red(`[${new Date().toLocaleString()}] [ERROR]: `), typeof args === "string" ? chalk.redBright(args) : args);
+  };
+}
+
+export default Logging;
