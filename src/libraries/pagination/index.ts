@@ -5,21 +5,18 @@ import { AppDataSource } from "../../data_source";
  *
  * @param model
  * @param queryCondition
+ * @param relationParams
  * @param page
  * @param perPage
- * @param sort_key
- * @param sort_order
+ * @param sortKey
+ * @param sortOrder
  * @returns object
  */
-export const paginate = async (model: any, queryCondition: any, page: number, perPage: number, sort_key: any, sort_order: any) => {
-  if (sort_key === null || sort_order === null) {
-    sort_key = "created_at";
-    sort_order = "DESC";
-  }
-
+export default async function paginate(page: number, perPage: number, model: any, whereParams: any, orderParams: any, relationParams: any) {
   const response = await AppDataSource.getRepository(model).findAndCount({
-    where: queryCondition,
-    order: { [sort_key]: sort_order },
+    where: whereParams,
+    order: orderParams,
+    relations: relationParams,
     skip: (page - 1) * perPage,
     take: perPage,
   });
@@ -37,4 +34,4 @@ export const paginate = async (model: any, queryCondition: any, page: number, pe
       last_page: lastPage,
     },
   };
-};
+}

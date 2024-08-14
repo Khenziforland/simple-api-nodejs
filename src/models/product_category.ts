@@ -38,6 +38,5 @@ export class ProductCategory {
     @AfterLoad()
     generateHashId() : void {
       this.hash_id = HashHelper.encode(this.id);
-      delete this.id
     }
 }

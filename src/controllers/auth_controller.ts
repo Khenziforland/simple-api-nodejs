@@ -54,7 +54,45 @@ class AuthController {
     }
 
     const result = await this.authService.register(request);
-    
+
+    return this.formatResponse.sendResponse(result, response);
+  };
+
+  /**
+   ** Login
+   *
+   * @param Request request
+   * @param Response response
+   * @return Response
+   */
+  login = async (request: Request, response: Response) => {
+    const validation = await this.authValidation.login(request);
+
+    if (!validation.status) {
+      return this.formatResponse.sendResponse(validation, response);
+    }
+
+    const result = await this.authService.login(request);
+
+    return this.formatResponse.sendResponse(result, response);
+  };
+
+  /**
+   ** Logout
+   *
+   * @param Request request
+   * @param Response response
+   * @return Response
+   */
+  logout = async (request: Request, response: Response) => {
+    const validation = await this.authValidation.logout(request);
+
+    if (!validation.status) {
+      return this.formatResponse.sendResponse(validation, response);
+    }
+
+    const result = await this.authService.logout(request);
+
     return this.formatResponse.sendResponse(result, response);
   };
 }

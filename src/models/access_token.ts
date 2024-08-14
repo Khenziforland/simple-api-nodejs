@@ -47,6 +47,5 @@ export class AccessToken {
     @AfterLoad()
     generateHashId() : void {
       this.hash_id = HashHelper.encode(this.id);
-      delete this.id
     }
 }

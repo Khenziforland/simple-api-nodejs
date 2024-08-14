@@ -5,7 +5,7 @@ dotenv.config();
 export const config = {
   app: {
     baseUrl: process.env.APP_BASE_URL + ":" + process.env.PORT ?? "localhost:8000",
-    port: Number(process.env.PORT) ?? 8000,
+    port: Number(process.env.SERVER_PORT) ?? 8000,
   },
 
   jwt: {
