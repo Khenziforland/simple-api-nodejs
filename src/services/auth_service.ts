@@ -69,15 +69,20 @@ class AuthService {
       email: request.fields.email,
     });
 
+    // Delete existing tokens for this user
+    await AppDataSource.getRepository(AccessToken).delete({
+      user: {
+        id: data.id
+      }
+    });
+
     const token = jwt.sign({ id: data.id }, config.jwt.secretKey, {
       expiresIn: "24h",
     });
 
     const expiredAt = DateTime.now().plus({ days: 1 }).toISO();
 
-    console.log(data);
-    
-
+    // Save new token
     await AppDataSource.getRepository(AccessToken).save({
       user: {
         id: data.id,
@@ -110,7 +115,7 @@ class AuthService {
     const token = request.headers!.authorization!.split(" ")[1];
 
     // Delete token from database
-    await AppDataSource.getRepository(AccessToken).softDelete({
+    await AppDataSource.getRepository(AccessToken).delete({
       token: token,
     });
 

@@ -73,7 +73,7 @@ export class ProductMethod {
   static async saveImage(request: any, id: number) {
     if (request.files.image) {
       const file = request.files.image;
-      const result = await StorageHelper.uploadFile(file, "product-image");
+      const result = await StorageHelper.uploadFile("product-image", file);
 
       if (result.status) {
         await AppDataSource.getRepository(Product).update({ id: id }, { image: result.filename });

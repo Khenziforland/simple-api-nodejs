@@ -19,22 +19,22 @@ class StorageHelper {
   /**
    ** Get url file
    *
-   * @param filename
    * @param folder
+   * @param filename
    * @returns string
    */
-  public static getUrlFile = (filename: string, folder: string) => {
+  public static getUrlFile = (folder: string, filename: string) => {
     return config.s3.endpoint + "/" + config.s3.bucket + "/" + config.s3.root + "/" + folder + "/" + filename;
   };
 
   /**
    ** Upload file to S3
    *
-   * @param file
    * @param folder
+   * @param file
    * @returns object
    */
-  public static uploadFile = async (file: any, folder: string) => {
+  public static uploadFile = async (folder: string, file: any) => {
     let status = true;
 
     const extension = FileUploadHelper.getExtension(file);
@@ -64,11 +64,11 @@ class StorageHelper {
   /**
    ** Delete file
    *
-   * @param filename
    * @param folder
+   * @param filename
    * @returns object
    */
-  public static deleteFile = async (filename: string, folder: string) => {
+  public static deleteFile = async (folder: string, filename: string) => {
     let status = true;
     let isFileExists = true;
 
